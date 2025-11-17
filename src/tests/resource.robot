@@ -9,6 +9,10 @@ ${BROWSER}   chrome
 ${HEADLESS}  false
 
 *** Keywords ***
+Prepare Test Suite
+    Open And Configure Browser
+    Reset Counter Via UI
+
 Open And Configure Browser
     IF  $BROWSER == 'chrome'
         ${options}  Evaluate  sys.modules['selenium.webdriver'].ChromeOptions()  sys
@@ -24,3 +28,7 @@ Open And Configure Browser
         Set Selenium Speed  ${DELAY}
     END
     Open Browser  browser=${BROWSER}  options=${options}
+
+Reset Counter Via UI
+    Go To    ${HOME_URL}
+    Click Button    Nollaa
